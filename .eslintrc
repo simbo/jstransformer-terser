@@ -162,7 +162,7 @@
           "caseInsensitive": true,
           "order": "asc"
         },
-        "groups": ["builtin", "external", "internal"],
+        "groups": [["builtin", "external"], "internal"],
         "newlines-between": "always"
       }
     ],
