@@ -39,9 +39,7 @@
     "test": "jest",
     "test:watch": "yarn run test --watch"
   },
-  "dependencies": {
-    "deasync": "^0.1.21"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "terser": ">=5"
   },
@@ -49,7 +47,6 @@
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-typescript": "^7.12.7",
-    "@types/deasync": "^0.1.1",
     "@types/jest": "^26.0.19",
     "@types/node": "^14.14.14",
     "@typescript-eslint/eslint-plugin": "^4.10.0",
