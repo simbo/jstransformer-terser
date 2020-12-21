@@ -1,4 +1,4 @@
-import deasync from 'deasync';
+import { readFile } from 'fs';
 import { minify, MinifyOptions } from 'terser';
 
 export const name = 'terser';
@@ -31,27 +31,33 @@ export function renderAsync(
   }
 }
 
-export function render(input: string, options?: MinifyOptions): TransformerOutput {
-  return deasync(renderAsync)(input, options);
-}
-
 export function renderFileAsync(
-  input: string,
+  filename: string,
   options?: MinifyOptions,
   callback?: (err: Error | null, result?: TransformerOutput) => void
 ): void | Promise<TransformerOutput> {
-  return renderAsync(input, options, callback);
-}
-
-export function renderFile(input: string, options?: MinifyOptions): TransformerOutput {
-  return deasync(renderFileAsync)(input, options);
+  const read = async (): Promise<string> =>
+    new Promise((resolve, reject) =>
+      readFile(filename, (err, contents) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(contents.toString());
+        }
+      })
+    );
+  if (typeof callback === 'function') {
+    read()
+      .then(output => renderAsync(output, options, callback) as void)
+      .catch(err => callback(err));
+  } else {
+    return read().then(async output => renderAsync(output, options) as Promise<TransformerOutput>);
+  }
 }
 
 export function can(ability: string): boolean {
   switch (ability) {
-    case 'render':
     case 'renderAsync':
-    case 'renderFile':
     case 'renderFileAsync':
       return true;
     default:
