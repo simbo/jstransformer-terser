@@ -35,37 +35,37 @@ jobs:
       - name: 👷‍♂️ Build
         run: yarn build
 
-      # - name: 💯 Report to Coveralls
-      #   uses: coverallsapp/github-action@v1.1.2
-      #   with:
-      #     github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: 💯 Report to Coveralls
+        uses: coverallsapp/github-action@v1.1.2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: 👀 Check for version update
-      #   id: version
-      #   uses: EndBug/version-check@v1
-      #   with:
-      #     file-url: https://unpkg.com/small-store/package.json
-      #     static-checking: localIsNew
+      - name: 👀 Check for version update
+        id: version
+        uses: EndBug/version-check@v1
+        with:
+          file-url: https://unpkg.com/small-store/package.json
+          static-checking: localIsNew
 
-      # - name: 📋 Get Commits since last Release
-      #   if: steps.version.outputs.changed == 'true'
-      #   uses: simbo/changes-since-last-release-action@v1
-      #   id: changes
+      - name: 📋 Get Commits since last Release
+        if: steps.version.outputs.changed == 'true'
+        uses: simbo/changes-since-last-release-action@v1
+        id: changes
 
-      # - name: 🎁 Create tag and GitHub Release
-      #   if: steps.version.outputs.changed == 'true'
-      #   uses: actions/create-release@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     tag_name: ${{ steps.version.outputs.version }}
-      #     release_name: Release ${{ steps.version.outputs.version }}
-      #     body: |
-      #       Changes since ${{ steps.changes.outputs.last-tag }}:
-      #       ${{ steps.changes.outputs.log }}
+      - name: 🎁 Create tag and GitHub Release
+        if: steps.version.outputs.changed == 'true'
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.version.outputs.version }}
+          release_name: Release ${{ steps.version.outputs.version }}
+          body: |
+            Changes since ${{ steps.changes.outputs.last-tag }}:
+            ${{ steps.changes.outputs.log }}
 
-      # - name: 🚚 Publish to npm
-      #   if: steps.version.outputs.changed == 'true'
-      #   uses: JS-DevTools/npm-publish@v1
-      #   with:
-      #     token: ${{ secrets.NPM_AUTH_TOKEN }}
+      - name: 🚚 Publish to npm
+        if: steps.version.outputs.changed == 'true'
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_AUTH_TOKEN }}
