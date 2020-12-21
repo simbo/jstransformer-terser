@@ -1,0 +1,72 @@
+{
+  "name": "jstransformer-terser",
+  "version": "0.1.0",
+  "description": "",
+  "author": "Simon Lepel <simbo@simbo.de> (https://simbo.de)",
+  "license": "MIT",
+  "keywords": [],
+  "homepage": "https://github.com/simbo/jstransformer-terser#readme",
+  "repository": "github:simbo/jstransformer-terser",
+  "bugs": "https://github.com/simbo/jstransformer-terser/issues",
+  "source": "src/jstransformer-terser.ts",
+  "main": "dist/jstransformer-terser.js",
+  "umd:main": "dist/jstransformer-terser.umd.js",
+  "module": "dist/jstransformer-terser.m.js",
+  "esmodule": "dist/jstransformer-terser.modern.js",
+  "types": "dist/jstransformer-terser.d.ts",
+  "files": [
+    "dist/",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "microbundle",
+    "build:watch": "microbundle watch",
+    "clean": "rm -rf ./dist",
+    "clean:coverage": "rm -rf ./coverage",
+    "clean:docs": "rm -rf ./docs-build",
+    "coverage:open": "open ./coverage/lcov-report/index.html",
+    "lint": "yarn run lint:prettier && yarn run lint:eslint",
+    "lint:fix": "yarn run lint:eslint:fix && yarn run lint:prettier:fix",
+    "lint:eslint": "eslint -c .eslintrc --ext .ts,.js .",
+    "lint:eslint:fix": "eslint -c .eslintrc --ext .ts,.js --fix .",
+    "lint:prettier": "prettier --check \"**/*.{ts,js,md,json,yml}\"",
+    "lint:prettier:fix": "prettier --write \"**/*.{ts,js,md,json,yml}\"",
+    "prebuild": "yarn run clean",
+    "prebuild:watch": "yarn run clean",
+    "preflight": "yarn run lint && yarn run test && yarn run build",
+    "pretest": "yarn run clean:coverage",
+    "test": "jest",
+    "test:watch": "yarn run test --watch"
+  },
+  "dependencies": {
+    "deasync": "^0.1.21"
+  },
+  "peerDependencies": {
+    "terser": ">=5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-typescript": "^7.12.7",
+    "@types/deasync": "^0.1.1",
+    "@types/jest": "^26.0.19",
+    "@types/node": "^14.14.14",
+    "@typescript-eslint/eslint-plugin": "^4.10.0",
+    "@typescript-eslint/parser": "^4.10.0",
+    "babel-jest": "^26.6.3",
+    "eslint": "^7.16.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-editorconfig": "^3.0.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsdoc": "^30.7.9",
+    "eslint-plugin-prefer-arrow": "^1.2.2",
+    "eslint-plugin-unicorn": "^24.0.0",
+    "jest": "^26.6.3",
+    "microbundle": "^0.12.4",
+    "prettier": "^2.2.1",
+    "terser": "^5.5.1",
+    "ts-jest": "^26.4.4",
+    "typescript": "^4.1.3"
+  }
+}
