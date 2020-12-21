@@ -4,14 +4,12 @@
 
 > Minifies javascript using terser via jstransformers.
 
-<!--
 [![npm Package Version](https://img.shields.io/npm/v/jstransformer-terser?)](https://www.npmjs.com/package/jstransformer-terser)
 [![Package Dependencies](https://img.shields.io/david/simbo/jstransformer-terser?label=deps)](https://www.npmjs.com/package/jstransformer-terser?activeTab=dependencies)
 [![Coveralls github](https://img.shields.io/coveralls/github/simbo/jstransformer-terser)](https://coveralls.io/github/simbo/jstransformer-terser)
 [![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/simbo/jstransformer-terser/CI/master)](https://github.com/simbo/jstransformer-terser/actions?query=workflow%3ACI)
 [![GitHub Repo](https://img.shields.io/badge/repo-public-87ceeb)](https://github.com/simbo/jstransformer-terser)
 [![License MIT](https://img.shields.io/badge/license-MIT-4cc552)](http://simbo.mit-license.org/)
--->
 
 ---
 
@@ -29,8 +27,8 @@ yarn add jstransformer-terser terser
 ```js
 var sd = require('jstransformer')(require('jstransformer-terser'));
 
-sd.render('function add(first, second) { return first + second; }').body;
-//=> 'function add(a,b){return a+b;}'
+sd.renderAsync('function add(first, second) { return first + second; }').then(result => console.log(result.body));
+//=> 'function add(n,d){return n+d;}'
 ```
 
 ## Development
