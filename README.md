@@ -1,6 +1,6 @@
 # jstransformer-terser
 
-[Terser](https://github.com/terser/terser) support for [JSTransformers](http://github.com/jstransformers).
+Sync and Async [Terser](https://github.com/terser/terser) support for [JSTransformers](http://github.com/jstransformers).
 
 > Minifies javascript using terser via jstransformers.
 
@@ -25,9 +25,17 @@ yarn add jstransformer-terser terser
 ## API
 
 ```js
-var sd = require('jstransformer')(require('jstransformer-terser'));
+var terserTransformer = require('jstransformer')(require('jstransformer-terser'));
 
-sd.renderAsync('function add(first, second) { return first + second; }').then(result => console.log(result.body));
+// SYNC
+const result = terserTransformer.render('function add(first, second) { return first + second; }');
+console.log(result.body);
+//=> 'function add(n,d){return n+d;}'
+
+// ASYNC
+terserTransformer
+  .renderAsync('function add(first, second) { return first + second; }')
+  .then(result => console.log(result.body));
 //=> 'function add(n,d){return n+d;}'
 ```
 
@@ -36,7 +44,7 @@ sd.renderAsync('function add(first, second) { return first + second; }').then(re
 Requirements: node.js >=14, yarn >=1.22
 
 ```sh
-# build using microbundle
+# build using tsc
 yarn build
 # watch and rebuild
 yarn build:watch
