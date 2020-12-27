@@ -10,6 +10,7 @@ import {
   renderFile,
   renderFileAsync
 } from '../src/jstransformer-terser';
+import { parseMinifyOptions } from '../src/parse-minify-options';
 import { TransformerOutput } from '../src/transformer-output.interface';
 
 const codeFile = join(__dirname, 'code.js');
@@ -139,4 +140,9 @@ test('renderFile() should error using invalid filename', () => {
   } catch (err) {
     return;
   }
+});
+
+test('parseMinifyOptions() should remove unknown options', () => {
+  const options = parseMinifyOptions({ foo: 'bar' } as any) as any;
+  expect(options.foo).toBeUndefined();
 });
