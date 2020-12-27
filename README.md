@@ -24,6 +24,9 @@ yarn add jstransformer-terser terser
 
 ## API
 
+This transformer supports `render`, `renderAsync`, `renderFile` and `renderFileAsync`.
+All according to the [jstransformer API](https://github.com/jstransformers/jstransformer#api) definition.
+
 ```js
 var terserTransformer = require('jstransformer')(require('jstransformer-terser'));
 
@@ -32,10 +35,17 @@ const result = terserTransformer.render('function add(first, second) { return fi
 console.log(result.body);
 //=> 'function add(n,d){return n+d;}'
 
-// ASYNC
+// ASYNC (Promise API)
 terserTransformer
   .renderAsync('function add(first, second) { return first + second; }')
   .then(result => console.log(result.body));
+//=> 'function add(n,d){return n+d;}'
+
+// ASYNC (Callback API)
+terserTransformer.renderAsync('function add(first, second) { return first + second; }', {}, (err, result) => {
+  if (err) console.error(err);
+  else console.log(result.body);
+});
 //=> 'function add(n,d){return n+d;}'
 ```
 
