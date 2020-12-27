@@ -12,11 +12,7 @@
   "homepage": "https://github.com/simbo/jstransformer-terser#readme",
   "repository": "github:simbo/jstransformer-terser",
   "bugs": "https://github.com/simbo/jstransformer-terser/issues",
-  "source": "src/jstransformer-terser.ts",
   "main": "dist/jstransformer-terser.js",
-  "umd:main": "dist/jstransformer-terser.umd.js",
-  "module": "dist/jstransformer-terser.m.js",
-  "esmodule": "dist/jstransformer-terser.modern.js",
   "types": "dist/jstransformer-terser.d.ts",
   "files": [
     "dist/",
@@ -24,8 +20,8 @@
     "README.md"
   ],
   "scripts": {
-    "build": "microbundle",
-    "build:watch": "microbundle watch",
+    "build": "tsc",
+    "build:watch": "tsc -w",
     "clean": "rm -rf ./dist",
     "clean:coverage": "rm -rf ./coverage",
     "clean:docs": "rm -rf ./docs-build",
@@ -64,7 +60,6 @@
     "eslint-plugin-prefer-arrow": "^1.2.2",
     "eslint-plugin-unicorn": "^24.0.0",
     "jest": "^26.6.3",
-    "microbundle": "^0.13.0",
     "prettier": "^2.2.1",
     "terser": "^5.5.1",
     "ts-jest": "^26.4.4",
